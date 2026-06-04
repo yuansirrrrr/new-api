@@ -10,6 +10,7 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
+	"net/url"
 	"sort"
 	"strings"
 	"time"
@@ -80,7 +81,23 @@ func BuildAlipayPagePay(tradeNo string, amount float64, subject string, body str
 		return "", nil, err
 	}
 	params["sign"] = sign
-	return cfg.Gateway, params, nil
+
+	gateway := cfg.Gateway
+	if parsedGateway, err := url.Parse(gateway); err == nil {
+		query := parsedGateway.Query()
+		query.Set("charset", params["charset"])
+		parsedGateway.RawQuery = query.Encode()
+		gateway = parsedGateway.String()
+	}
+
+	formParams := make(map[string]string, len(params)-1)
+	for key, value := range params {
+		if key == "charset" {
+			continue
+		}
+		formParams[key] = value
+	}
+	return gateway, formParams, nil
 }
 
 func VerifyAlipayParams(params map[string]string) error {
