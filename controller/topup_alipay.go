@@ -56,7 +56,7 @@ func RequestAlipayPay(c *gin.Context) {
 	}
 
 	callbackAddress := service.GetCallbackAddress()
-	returnURL := paymentReturnPath("/console/log")
+	returnURL := strings.TrimRight(callbackAddress, "/") + common.ThemeAwarePath("/console/log")
 	notifyURL := strings.TrimRight(callbackAddress, "/") + "/api/user/alipay/notify"
 	tradeNo := fmt.Sprintf("ALIPAYUSR%dNO%s%s", id, common.GetRandomString(6), strconv.FormatInt(time.Now().Unix(), 10))
 
