@@ -20,6 +20,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const videoProxyFetchTimeout = 10 * time.Minute
+
 // videoProxyError returns a standardized OpenAI-style error response.
 func videoProxyError(c *gin.Context, status int, errType, message string) {
 	c.JSON(status, gin.H{
@@ -75,7 +77,7 @@ func VideoProxy(c *gin.Context) {
 		return
 	}
 
-	ctx, cancel := context.WithTimeout(c.Request.Context(), 60*time.Second)
+	ctx, cancel := context.WithTimeout(c.Request.Context(), videoProxyFetchTimeout)
 	defer cancel()
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "", nil)
 	if err != nil {
