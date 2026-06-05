@@ -16,7 +16,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { Settings, Zap, BarChart3 } from 'lucide-react'
+import { BarChart3, Cable, Route } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { AnimateInView } from '@/components/animate-in-view'
 
@@ -25,59 +25,59 @@ export function HowItWorks() {
 
   const steps = [
     {
-      num: '1',
-      title: t('Configure'),
+      num: '01',
+      title: t('Choose a model'),
       desc: t(
-        'Add your API keys, set up channels and configure access permissions'
+        'Pick a model by capability, provider and price. Keep model names stable for your users.'
       ),
-      icon: <Settings className='size-6' strokeWidth={1.5} />,
+      icon: <Route className='size-6' strokeWidth={1.5} />,
     },
     {
-      num: '2',
-      title: t('Connect'),
+      num: '02',
+      title: t('Send one API request'),
       desc: t(
-        'Connect through OpenAI, Claude, Gemini, and other compatible API routes'
+        'Use one compatible base URL and let Deeprouter translate the request to the selected upstream.'
       ),
-      icon: <Zap className='size-6' strokeWidth={1.5} />,
+      icon: <Cable className='size-6' strokeWidth={1.5} />,
     },
     {
-      num: '3',
-      title: t('Monitor'),
-      desc: t('Track usage, costs and performance with real-time analytics'),
+      num: '03',
+      title: t('Control cost and quality'),
+      desc: t(
+        'Monitor spend, latency and failures, then tune ratios, groups and fallback channels.'
+      ),
       icon: <BarChart3 className='size-6' strokeWidth={1.5} />,
     },
   ]
 
   return (
-    <section className='border-border/40 relative z-10 border-t px-6 py-24 md:py-32'>
+    <section className='border-border bg-background text-foreground dark:border-white/10 dark:bg-[#05060a] relative z-10 border-t px-6 py-24 md:py-32 dark:text-white'>
       <div className='mx-auto max-w-6xl'>
         <AnimateInView className='mb-16 text-center md:mb-20'>
-          <p className='text-muted-foreground mb-3 text-xs font-medium tracking-widest uppercase'>
+          <p className='mb-3 text-xs font-medium tracking-widest text-blue-600 uppercase dark:text-blue-300'>
             {t('How It Works')}
           </p>
-          <h2 className='text-2xl font-bold tracking-tight md:text-3xl'>
-            {t('Three steps to get started')}
+          <h2 className='text-3xl font-semibold tracking-[-0.04em] md:text-5xl'>
+            {t('From model choice to production traffic in minutes.')}
           </h2>
         </AnimateInView>
 
-        <div className='grid gap-8 md:grid-cols-3 md:gap-12'>
+        <div className='grid gap-5 md:grid-cols-3'>
           {steps.map((step, i) => (
             <AnimateInView
               key={step.num}
               delay={i * 150}
               animation='fade-up'
-              className='relative flex flex-col items-center text-center'
+              className='border-border bg-card/70 relative overflow-hidden rounded-3xl border p-6 dark:border-white/10 dark:bg-white/[0.04]'
             >
-              <div className='relative mb-6'>
-                <div className='text-muted-foreground border-border/50 bg-muted/30 flex size-16 items-center justify-center rounded-2xl border transition-colors'>
-                  {step.icon}
-                </div>
-                <div className='bg-foreground text-background absolute -top-2 -right-2 flex size-6 items-center justify-center rounded-full text-xs font-bold'>
-                  {step.num}
-                </div>
+              <div className='text-muted-foreground/15 absolute top-4 right-5 text-5xl font-semibold tracking-[-0.08em] dark:text-white/[0.06]'>
+                {step.num}
               </div>
-              <h3 className='mb-2 text-base font-semibold'>{step.title}</h3>
-              <p className='text-muted-foreground max-w-[240px] text-sm leading-relaxed'>
+              <div className='mb-8 flex size-14 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-600 dark:bg-white/10 dark:text-blue-200'>
+                {step.icon}
+              </div>
+              <h3 className='mb-3 text-lg font-semibold'>{step.title}</h3>
+              <p className='text-muted-foreground text-sm leading-relaxed dark:text-slate-400'>
                 {step.desc}
               </p>
             </AnimateInView>
