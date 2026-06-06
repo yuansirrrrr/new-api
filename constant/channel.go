@@ -56,6 +56,7 @@ const (
 	ChannelTypeReplicate      = 56
 	ChannelTypeCodex          = 57
 	ChannelTypeZLHubVideo     = 58
+	ChannelTypeZLHubAsset     = 59
 	ChannelTypeDummy          // this one is only for count, do not add any channel after this
 
 )
@@ -120,6 +121,7 @@ var ChannelBaseURLs = []string{
 	"https://api.replicate.com",                 //56
 	"https://chatgpt.com",                       //57
 	"https://api.zlhub.cn",                      //58
+	"https://asset.zlhub.cn",                    //59
 }
 
 var ChannelTypeNames = map[int]string{
@@ -178,6 +180,7 @@ var ChannelTypeNames = map[int]string{
 	ChannelTypeReplicate:      "Replicate",
 	ChannelTypeCodex:          "Codex",
 	ChannelTypeZLHubVideo:     "ZLHubVideo",
+	ChannelTypeZLHubAsset:     "ZLHubAsset",
 }
 
 func GetChannelTypeName(channelType int) string {

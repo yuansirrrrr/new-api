@@ -186,6 +186,16 @@ func SetRelayRouter(router *gin.Engine) {
 		relaySunoRouter.GET("/fetch/:id", controller.RelayTaskFetch)
 	}
 
+	assetAuditRouter := router.Group("/api")
+	assetAuditRouter.Use(middleware.RouteTag("relay"))
+	assetAuditRouter.Use(middleware.SystemPerformanceCheck())
+	assetAuditRouter.Use(middleware.TokenAuth(), middleware.Distribute())
+	{
+		assetAuditRouter.POST("/asset/upload/sync", controller.RelayAssetAuditUploadSync)
+		assetAuditRouter.POST("/asset/upload/async", controller.RelayAssetAuditUploadAsync)
+		assetAuditRouter.GET("/asset/task/:task_id", controller.RelayAssetAuditTask)
+	}
+
 	relayGeminiRouter := router.Group("/v1beta")
 	relayGeminiRouter.Use(middleware.RouteTag("relay"))
 	relayGeminiRouter.Use(middleware.SystemPerformanceCheck())

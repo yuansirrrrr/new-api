@@ -145,6 +145,18 @@ export const CHANNEL_TYPE_CONFIGS: Record<number, ChannelTypeConfig> = {
       baseUrl: 'Default: https://api.zlhub.cn',
     },
   },
+  59: {
+    id: 59,
+    name: CHANNEL_TYPES[59],
+    icon: 'doubao',
+    defaultBaseUrl: 'https://asset.zlhub.cn',
+    supportedModels: ['zlhub-asset-audit'],
+    hints: {
+      key: 'ZLHub asset X-Access-Token',
+      models: 'zlhub-asset-audit',
+      baseUrl: 'Default: https://asset.zlhub.cn',
+    },
+  },
 }
 
 /**

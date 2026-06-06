@@ -194,6 +194,11 @@ export const CHANNEL_OPTIONS = [
     color: 'blue',
     label: 'ZLHubVideo',
   },
+  {
+    value: 59,
+    color: 'blue',
+    label: 'ZLHubAsset',
+  },
 ];
 
 // Channel types that support upstream model list fetching in UI.
