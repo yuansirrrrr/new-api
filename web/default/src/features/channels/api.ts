@@ -63,6 +63,7 @@ export type CodexOAuthCompleteResponse = {
     email?: string
     expires_at?: string
     last_refresh?: string
+    channel_id?: number
   }
 }
 

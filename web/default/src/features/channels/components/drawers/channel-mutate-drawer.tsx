@@ -2035,6 +2035,12 @@ export function ChannelMutateDrawer({
                         onKeyGenerated={(key) => {
                           form.setValue('key', key, { shouldDirty: true })
                         }}
+                        onChannelCredentialSaved={() => {
+                          if (!channelId) return
+                          queryClient.invalidateQueries({
+                            queryKey: channelsQueryKeys.detail(channelId),
+                          })
+                        }}
                       />
 
                       {isEditing && isMultiKeyChannel && (

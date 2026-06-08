@@ -39,6 +39,7 @@ type CodexOAuthDialogProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   onKeyGenerated: (key: string) => void
+  onChannelCredentialSaved?: () => void
   channelId?: number
 }
 
@@ -46,6 +47,7 @@ export function CodexOAuthDialog({
   open,
   onOpenChange,
   onKeyGenerated,
+  onChannelCredentialSaved,
   channelId,
 }: CodexOAuthDialogProps) {
   const { t } = useTranslation()
@@ -116,6 +118,13 @@ export function CodexOAuthDialog({
       }
 
       const rawKey = res.data?.key || ''
+      if (channelId) {
+        onChannelCredentialSaved?.()
+        toast.success(t('Credential refreshed'))
+        onOpenChange(false)
+        return
+      }
+
       if (!rawKey) {
         throw new Error('Missing key in response')
       }
