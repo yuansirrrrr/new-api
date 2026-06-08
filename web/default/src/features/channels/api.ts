@@ -286,9 +286,14 @@ export async function getChannelKey(
 // Codex Channel Operations
 // ============================================================================
 
-export async function startCodexOAuth(): Promise<CodexOAuthStartResponse> {
+export async function startCodexOAuth(
+  channelId?: number
+): Promise<CodexOAuthStartResponse> {
+  const path = channelId
+    ? `/api/channel/${channelId}/codex/oauth/start`
+    : '/api/channel/codex/oauth/start'
   const res = await api.post(
-    '/api/channel/codex/oauth/start',
+    path,
     {},
     channelActionConfig()
   )
@@ -296,10 +301,14 @@ export async function startCodexOAuth(): Promise<CodexOAuthStartResponse> {
 }
 
 export async function completeCodexOAuth(
-  input: string
+  input: string,
+  channelId?: number
 ): Promise<CodexOAuthCompleteResponse> {
+  const path = channelId
+    ? `/api/channel/${channelId}/codex/oauth/complete`
+    : '/api/channel/codex/oauth/complete'
   const res = await api.post(
-    '/api/channel/codex/oauth/complete',
+    path,
     { input },
     channelActionConfig()
   )

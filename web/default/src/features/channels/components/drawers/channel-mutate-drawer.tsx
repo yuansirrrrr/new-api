@@ -2031,6 +2031,7 @@ export function ChannelMutateDrawer({
                       <CodexOAuthDialog
                         open={codexOAuthDialogOpen}
                         onOpenChange={setCodexOAuthDialogOpen}
+                        channelId={isEditing ? channelId : undefined}
                         onKeyGenerated={(key) => {
                           form.setValue('key', key, { shouldDirty: true })
                         }}
