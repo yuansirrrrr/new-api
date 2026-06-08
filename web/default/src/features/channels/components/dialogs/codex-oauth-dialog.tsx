@@ -118,7 +118,8 @@ export function CodexOAuthDialog({
       }
 
       const rawKey = res.data?.key || ''
-      if (channelId) {
+      const savedChannelId = res.data?.channel_id
+      if (channelId || savedChannelId) {
         onChannelCredentialSaved?.()
         toast.success(t('Credential refreshed'))
         onOpenChange(false)
