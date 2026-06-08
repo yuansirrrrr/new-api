@@ -39,12 +39,16 @@ type CodexOAuthDialogProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   onKeyGenerated: (key: string) => void
+  onChannelCredentialSaved?: () => void
+  channelId?: number
 }
 
 export function CodexOAuthDialog({
   open,
   onOpenChange,
   onKeyGenerated,
+  onChannelCredentialSaved,
+  channelId,
 }: CodexOAuthDialogProps) {
   const { t } = useTranslation()
   const { copiedText, copyToClipboard } = useCopyToClipboard({ notify: false })
@@ -76,7 +80,7 @@ export function CodexOAuthDialog({
   const handleStart = async () => {
     setState((prev) => ({ ...prev, isStarting: true }))
     try {
-      const res = await startCodexOAuth()
+      const res = await startCodexOAuth(channelId)
       if (!res.success) {
         throw new Error(res.message || 'Failed to start OAuth')
       }
@@ -108,12 +112,20 @@ export function CodexOAuthDialog({
     if (!state.callbackUrl.trim()) return
     setState((prev) => ({ ...prev, isCompleting: true }))
     try {
-      const res = await completeCodexOAuth(state.callbackUrl.trim())
+      const res = await completeCodexOAuth(state.callbackUrl.trim(), channelId)
       if (!res.success) {
         throw new Error(res.message || 'OAuth failed')
       }
 
       const rawKey = res.data?.key || ''
+      const savedChannelId = res.data?.channel_id
+      if (channelId || savedChannelId) {
+        onChannelCredentialSaved?.()
+        toast.success(t('Credential refreshed'))
+        onOpenChange(false)
+        return
+      }
+
       if (!rawKey) {
         throw new Error('Missing key in response')
       }

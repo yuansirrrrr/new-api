@@ -2031,8 +2031,15 @@ export function ChannelMutateDrawer({
                       <CodexOAuthDialog
                         open={codexOAuthDialogOpen}
                         onOpenChange={setCodexOAuthDialogOpen}
+                        channelId={isEditing ? channelId : undefined}
                         onKeyGenerated={(key) => {
                           form.setValue('key', key, { shouldDirty: true })
+                        }}
+                        onChannelCredentialSaved={() => {
+                          if (!channelId) return
+                          queryClient.invalidateQueries({
+                            queryKey: channelsQueryKeys.detail(channelId),
+                          })
                         }}
                       />
 
