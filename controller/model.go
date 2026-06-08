@@ -80,6 +80,12 @@ func init() {
 			OwnedBy: minimax.ChannelName,
 		})
 	}
+	openAIModels = append(openAIModels, dto.OpenAIModels{
+		Id:      constant.AssetAuditModelName,
+		Object:  "model",
+		Created: 1626777600,
+		OwnedBy: "zlhub-asset",
+	})
 	for modelName, _ := range constant.MidjourneyModel2Action {
 		openAIModels = append(openAIModels, dto.OpenAIModels{
 			Id:      modelName,
@@ -105,6 +111,7 @@ func init() {
 		adaptor.Init(meta)
 		channelId2Models[i] = adaptor.GetModelList()
 	}
+	channelId2Models[constant.ChannelTypeZLHubAsset] = []string{constant.AssetAuditModelName}
 	openAIModels = lo.UniqBy(openAIModels, func(m dto.OpenAIModels) string {
 		return m.Id
 	})
