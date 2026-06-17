@@ -35,13 +35,13 @@ function UserGuidePage() {
 
   return (
     <main className='bg-background text-foreground min-h-screen'>
-      <div className='mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[280px_1fr] lg:px-10'>
-        <aside className='border-border bg-card/70 h-fit rounded-3xl border p-4 shadow-sm'>
+      <div className='mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[300px_1fr] lg:px-10'>
+        <aside className='border-border bg-card/70 h-fit rounded-3xl border p-4 shadow-sm lg:sticky lg:top-8'>
           <div className='px-3 py-2'>
             <p className='text-muted-foreground text-sm'>功能指南</p>
             <h1 className='mt-1 text-xl font-semibold'>用户指南</h1>
           </div>
-          <nav className='mt-4 space-y-1'>
+          <nav className='mt-4 space-y-1.5'>
             {USER_GUIDE_ITEMS.map((item) => {
               const active = item.slug === currentItem.slug
               return (
@@ -50,7 +50,7 @@ function UserGuidePage() {
                   to='/zh/docs/guide/feature-guide/user/$slug'
                   params={{ slug: item.slug }}
                   className={[
-                    'block rounded-2xl px-3 py-2 text-sm transition-colors',
+                    'block min-h-10 rounded-2xl px-3 py-2.5 text-sm leading-5 transition-colors',
                     active
                       ? 'bg-primary/10 text-primary font-medium'
                       : 'text-muted-foreground hover:bg-muted hover:text-foreground',
@@ -99,6 +99,19 @@ function UserGuidePage() {
                     <ol className='text-muted-foreground mt-3 list-decimal space-y-2 pl-6 leading-7'>
                       {children}
                     </ol>
+                  ),
+                  blockquote: ({ children }) => (
+                    <blockquote className='border-primary/40 bg-muted/60 text-muted-foreground mt-4 rounded-2xl border-l-4 px-4 py-3 leading-7'>
+                      {children}
+                    </blockquote>
+                  ),
+                  img: ({ alt, src }) => (
+                    <img
+                      alt={alt ?? ''}
+                      src={src ?? ''}
+                      className='mt-4 rounded-2xl border'
+                      loading='lazy'
+                    />
                   ),
                   table: ({ children }) => (
                     <div className='mt-4 overflow-x-auto rounded-2xl border'>

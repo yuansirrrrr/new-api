@@ -53,7 +53,7 @@ const USER_GUIDE_DOCS = {
     'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/personal-setting',
   token: 'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/token',
   api: 'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/api',
-  chat: 'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/chat-app',
+  chat: 'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/chat-apps',
   pricing:
     'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/pricing',
 }

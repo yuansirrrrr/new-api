@@ -93,7 +93,7 @@ export default defineConfig(({ envMode }) => {
         module: {
           rules: [
             {
-              test: /\.md$/,
+              test: /\.mdx?$/,
               type: 'asset/source',
             },
           ],
