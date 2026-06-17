@@ -19,6 +19,7 @@ For commercial licensing, please contact support@quantumnous.com
 import { Link } from '@tanstack/react-router'
 import { ArrowRight, BookOpen, Search, Sparkles } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { resolveDocsUrl } from '@/lib/docs-url'
 import { useStatus } from '@/hooks/use-status'
 import { Button } from '@/components/ui/button'
 
@@ -30,8 +31,7 @@ interface HeroProps {
 export function Hero(props: HeroProps) {
   const { t } = useTranslation()
   const { status } = useStatus()
-  const docsUrl =
-    (status?.docs_link as string | undefined) || 'https://docs.newapi.pro'
+  const docsUrl = resolveDocsUrl(status?.docs_link as string | undefined)
 
   const modelCards = [
     {
@@ -65,7 +65,7 @@ export function Hero(props: HeroProps) {
       'group inline-flex h-11 items-center gap-1.5 rounded-full border border-border bg-background/80 px-5 text-sm font-medium text-foreground hover:bg-muted dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:hover:text-white'
     const content = (
       <>
-        <BookOpen className='text-muted-foreground size-4 transition-colors duration-200 group-hover:text-foreground dark:text-slate-300 dark:group-hover:text-white' />
+        <BookOpen className='text-muted-foreground group-hover:text-foreground size-4 transition-colors duration-200 dark:text-slate-300 dark:group-hover:text-white' />
         <span>{t('Docs')}</span>
       </>
     )
@@ -96,7 +96,7 @@ export function Hero(props: HeroProps) {
   }
 
   return (
-    <section className='bg-background text-foreground dark:bg-[#05060a] relative z-10 overflow-hidden px-6 pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 dark:text-white'>
+    <section className='bg-background text-foreground relative z-10 overflow-hidden px-6 pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 dark:bg-[#05060a] dark:text-white'>
       <div
         aria-hidden
         className='pointer-events-none absolute inset-0 -z-10 opacity-80'
@@ -144,7 +144,7 @@ export function Hero(props: HeroProps) {
           >
             {props.isAuthenticated ? (
               <Button
-                className='bg-foreground text-background hover:bg-foreground/90 dark:bg-white dark:text-black dark:hover:bg-white/90 group h-11 rounded-full px-5 text-sm font-medium'
+                className='bg-foreground text-background hover:bg-foreground/90 group h-11 rounded-full px-5 text-sm font-medium dark:bg-white dark:text-black dark:hover:bg-white/90'
                 render={<Link to='/dashboard' />}
               >
                 {t('Go to Dashboard')}
@@ -152,7 +152,7 @@ export function Hero(props: HeroProps) {
               </Button>
             ) : (
               <Button
-                className='bg-foreground text-background hover:bg-foreground/90 dark:bg-white dark:text-black dark:hover:bg-white/90 group h-11 rounded-full px-5 text-sm font-medium'
+                className='bg-foreground text-background hover:bg-foreground/90 group h-11 rounded-full px-5 text-sm font-medium dark:bg-white dark:text-black dark:hover:bg-white/90'
                 render={<Link to='/sign-up' />}
               >
                 {t('Start building')}
@@ -161,7 +161,7 @@ export function Hero(props: HeroProps) {
             )}
             <Button
               variant='outline'
-              className='border-border bg-background/80 h-11 rounded-full px-5 text-sm font-medium text-foreground hover:bg-muted dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:hover:text-white'
+              className='border-border bg-background/80 text-foreground hover:bg-muted h-11 rounded-full px-5 text-sm font-medium dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:hover:text-white'
               render={<Link to='/pricing' />}
             >
               {t('Browse models')}
@@ -176,13 +176,13 @@ export function Hero(props: HeroProps) {
         >
           <Link
             to='/pricing'
-            className='border-border bg-card/80 hover:bg-muted/70 flex h-14 items-center gap-3 rounded-2xl border px-4 text-left shadow-2xl shadow-blue-950/10 backdrop-blur-2xl transition-colors dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.07] dark:shadow-blue-950/30'
+            className='border-border bg-card/80 hover:bg-muted/70 flex h-14 items-center gap-3 rounded-2xl border px-4 text-left shadow-2xl shadow-blue-950/10 backdrop-blur-2xl transition-colors dark:border-white/10 dark:bg-white/[0.04] dark:shadow-blue-950/30 dark:hover:bg-white/[0.07]'
           >
             <Search className='text-muted-foreground size-5 dark:text-slate-400' />
             <span className='text-muted-foreground flex-1 text-sm dark:text-slate-400'>
               {t('Search models, providers, modalities...')}
             </span>
-            <span className='border-border bg-muted rounded-lg border px-2 py-1 font-mono text-[10px] text-muted-foreground dark:border-white/10 dark:bg-white/10 dark:text-slate-400'>
+            <span className='border-border bg-muted text-muted-foreground rounded-lg border px-2 py-1 font-mono text-[10px] dark:border-white/10 dark:bg-white/10 dark:text-slate-400'>
               /
             </span>
           </Link>
@@ -204,7 +204,7 @@ export function Hero(props: HeroProps) {
                 </span>
                 <ArrowRight className='text-muted-foreground size-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 dark:text-slate-400' />
               </div>
-              <div className='font-medium text-foreground dark:text-white'>
+              <div className='text-foreground font-medium dark:text-white'>
                 {item.model}
               </div>
               <div className='mt-2 flex items-center justify-between gap-3 text-xs'>

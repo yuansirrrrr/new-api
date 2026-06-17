@@ -1,6 +1,10 @@
 package operation_setting
 
-import "github.com/QuantumNous/new-api/setting/config"
+import (
+	"strings"
+
+	"github.com/QuantumNous/new-api/setting/config"
+)
 
 // 额度展示类型
 const (
@@ -23,8 +27,10 @@ type GeneralSetting struct {
 }
 
 // 默认配置
+const DefaultDocsLink = "https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/auth"
+
 var generalSetting = GeneralSetting{
-	DocsLink:                   "https://docs.newapi.pro",
+	DocsLink:                   DefaultDocsLink,
 	PingIntervalEnabled:        false,
 	PingIntervalSeconds:        60,
 	QuotaDisplayType:           QuotaDisplayTypeUSD,
@@ -39,6 +45,14 @@ func init() {
 
 func GetGeneralSetting() *GeneralSetting {
 	return &generalSetting
+}
+
+func NormalizeDocsLink(link string) string {
+	link = strings.TrimSpace(link)
+	if link == "" || strings.Contains(link, "docs.newapi.pro") {
+		return DefaultDocsLink
+	}
+	return link
 }
 
 // IsCurrencyDisplay 是否以货币形式展示（美元或人民币）

@@ -47,6 +47,17 @@ const NEW_API_FOOTER_ATTRIBUTION_KEY = [
   'projectAttributionSuffix',
 ].join('.')
 
+const USER_GUIDE_DOCS = {
+  auth: 'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/auth',
+  settings:
+    'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/personal-setting',
+  token: 'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/token',
+  api: 'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/api',
+  chat: 'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/chat-app',
+  pricing:
+    'https://doc.deeprouterai.com/zh/docs/guide/feature-guide/user/pricing',
+}
+
 function FooterLinkItem(props: { link: FooterLink }) {
   const { t } = useTranslation()
   const isExternal = props.link.href.startsWith('http')
@@ -169,15 +180,15 @@ export function Footer(props: FooterProps) {
         links: [
           {
             text: t('footer.columns.about.links.aboutProject'),
-            href: 'https://docs.newapi.pro/wiki/project-introduction/',
+            href: USER_GUIDE_DOCS.auth,
           },
           {
             text: t('footer.columns.about.links.contact'),
-            href: 'https://docs.newapi.pro/support/community-interaction/',
+            href: USER_GUIDE_DOCS.settings,
           },
           {
             text: t('footer.columns.about.links.features'),
-            href: 'https://docs.newapi.pro/wiki/features-introduction/',
+            href: USER_GUIDE_DOCS.pricing,
           },
         ],
       },
@@ -186,15 +197,15 @@ export function Footer(props: FooterProps) {
         links: [
           {
             text: t('footer.columns.docs.links.quickStart'),
-            href: 'https://docs.newapi.pro/getting-started/',
+            href: USER_GUIDE_DOCS.auth,
           },
           {
             text: t('footer.columns.docs.links.installation'),
-            href: 'https://docs.newapi.pro/installation/',
+            href: USER_GUIDE_DOCS.token,
           },
           {
             text: t('footer.columns.docs.links.apiDocs'),
-            href: 'https://docs.newapi.pro/api/',
+            href: USER_GUIDE_DOCS.api,
           },
         ],
       },

@@ -90,6 +90,14 @@ export default defineConfig(({ envMode }) => {
     },
     tools: {
       rspack: {
+        module: {
+          rules: [
+            {
+              test: /\.md$/,
+              type: 'asset/source',
+            },
+          ],
+        },
         plugins: [
           tanstackRouter({
             target: 'react',
