@@ -68,7 +68,7 @@ import { Route as AuthenticatedSystemSettingsModelsSectionRouteImport } from './
 import { Route as AuthenticatedSystemSettingsContentSectionRouteImport } from './routes/_authenticated/system-settings/content/$section'
 import { Route as AuthenticatedSystemSettingsBillingSectionRouteImport } from './routes/_authenticated/system-settings/billing/$section'
 import { Route as AuthenticatedSystemSettingsAuthSectionRouteImport } from './routes/_authenticated/system-settings/auth/$section'
-import { Route as ZhDocsGuideFeatureGuideUserSlugRouteImport } from './routes/zh/docs/guide/feature-guide/user/$slug'
+import { Route as LocaleDocsGuideFeatureGuideUserSlugRouteImport } from './routes/$locale/docs/guide/feature-guide/user/$slug'
 
 const UserAgreementRoute = UserAgreementRouteImport.update({
   id: '/user-agreement',
@@ -392,10 +392,10 @@ const AuthenticatedSystemSettingsAuthSectionRoute =
     path: '/auth/$section',
     getParentRoute: () => AuthenticatedSystemSettingsRouteRoute,
   } as any)
-const ZhDocsGuideFeatureGuideUserSlugRoute =
-  ZhDocsGuideFeatureGuideUserSlugRouteImport.update({
-    id: '/zh/docs/guide/feature-guide/user/$slug',
-    path: '/zh/docs/guide/feature-guide/user/$slug',
+const LocaleDocsGuideFeatureGuideUserSlugRoute =
+  LocaleDocsGuideFeatureGuideUserSlugRouteImport.update({
+    id: '/$locale/docs/guide/feature-guide/user/$slug',
+    path: '/$locale/docs/guide/feature-guide/user/$slug',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -457,7 +457,7 @@ export interface FileRoutesByFullPath {
   '/system-settings/operations/': typeof AuthenticatedSystemSettingsOperationsIndexRoute
   '/system-settings/security/': typeof AuthenticatedSystemSettingsSecurityIndexRoute
   '/system-settings/site/': typeof AuthenticatedSystemSettingsSiteIndexRoute
-  '/zh/docs/guide/feature-guide/user/$slug': typeof ZhDocsGuideFeatureGuideUserSlugRoute
+  '/$locale/docs/guide/feature-guide/user/$slug': typeof LocaleDocsGuideFeatureGuideUserSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -516,7 +516,7 @@ export interface FileRoutesByTo {
   '/system-settings/operations': typeof AuthenticatedSystemSettingsOperationsIndexRoute
   '/system-settings/security': typeof AuthenticatedSystemSettingsSecurityIndexRoute
   '/system-settings/site': typeof AuthenticatedSystemSettingsSiteIndexRoute
-  '/zh/docs/guide/feature-guide/user/$slug': typeof ZhDocsGuideFeatureGuideUserSlugRoute
+  '/$locale/docs/guide/feature-guide/user/$slug': typeof LocaleDocsGuideFeatureGuideUserSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -579,7 +579,7 @@ export interface FileRoutesById {
   '/_authenticated/system-settings/operations/': typeof AuthenticatedSystemSettingsOperationsIndexRoute
   '/_authenticated/system-settings/security/': typeof AuthenticatedSystemSettingsSecurityIndexRoute
   '/_authenticated/system-settings/site/': typeof AuthenticatedSystemSettingsSiteIndexRoute
-  '/zh/docs/guide/feature-guide/user/$slug': typeof ZhDocsGuideFeatureGuideUserSlugRoute
+  '/$locale/docs/guide/feature-guide/user/$slug': typeof LocaleDocsGuideFeatureGuideUserSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -641,7 +641,7 @@ export interface FileRouteTypes {
     | '/system-settings/operations/'
     | '/system-settings/security/'
     | '/system-settings/site/'
-    | '/zh/docs/guide/feature-guide/user/$slug'
+    | '/$locale/docs/guide/feature-guide/user/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -700,7 +700,7 @@ export interface FileRouteTypes {
     | '/system-settings/operations'
     | '/system-settings/security'
     | '/system-settings/site'
-    | '/zh/docs/guide/feature-guide/user/$slug'
+    | '/$locale/docs/guide/feature-guide/user/$slug'
   id:
     | '__root__'
     | '/'
@@ -762,7 +762,7 @@ export interface FileRouteTypes {
     | '/_authenticated/system-settings/operations/'
     | '/_authenticated/system-settings/security/'
     | '/_authenticated/system-settings/site/'
-    | '/zh/docs/guide/feature-guide/user/$slug'
+    | '/$locale/docs/guide/feature-guide/user/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -784,7 +784,7 @@ export interface RootRouteChildren {
   RankingsIndexRoute: typeof RankingsIndexRoute
   SetupIndexRoute: typeof SetupIndexRoute
   PricingModelIdIndexRoute: typeof PricingModelIdIndexRoute
-  ZhDocsGuideFeatureGuideUserSlugRoute: typeof ZhDocsGuideFeatureGuideUserSlugRoute
+  LocaleDocsGuideFeatureGuideUserSlugRoute: typeof LocaleDocsGuideFeatureGuideUserSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1202,11 +1202,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSystemSettingsAuthSectionRouteImport
       parentRoute: typeof AuthenticatedSystemSettingsRouteRoute
     }
-    '/zh/docs/guide/feature-guide/user/$slug': {
-      id: '/zh/docs/guide/feature-guide/user/$slug'
-      path: '/zh/docs/guide/feature-guide/user/$slug'
-      fullPath: '/zh/docs/guide/feature-guide/user/$slug'
-      preLoaderRoute: typeof ZhDocsGuideFeatureGuideUserSlugRouteImport
+    '/$locale/docs/guide/feature-guide/user/$slug': {
+      id: '/$locale/docs/guide/feature-guide/user/$slug'
+      path: '/$locale/docs/guide/feature-guide/user/$slug'
+      fullPath: '/$locale/docs/guide/feature-guide/user/$slug'
+      preLoaderRoute: typeof LocaleDocsGuideFeatureGuideUserSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -1361,7 +1361,8 @@ const rootRouteChildren: RootRouteChildren = {
   RankingsIndexRoute: RankingsIndexRoute,
   SetupIndexRoute: SetupIndexRoute,
   PricingModelIdIndexRoute: PricingModelIdIndexRoute,
-  ZhDocsGuideFeatureGuideUserSlugRoute: ZhDocsGuideFeatureGuideUserSlugRoute,
+  LocaleDocsGuideFeatureGuideUserSlugRoute:
+    LocaleDocsGuideFeatureGuideUserSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
