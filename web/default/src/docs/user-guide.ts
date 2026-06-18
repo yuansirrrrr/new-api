@@ -16,16 +16,44 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import ApiGuideMarkdown from './user-guide/api.mdx'
-import AuthGuideMarkdown from './user-guide/auth.mdx'
-import ChatAppsGuideMarkdown from './user-guide/chat-apps.mdx'
-import LogGuideMarkdown from './user-guide/log.mdx'
-import PersonalSettingGuideMarkdown from './user-guide/personal-setting.mdx'
-import PricingGuideMarkdown from './user-guide/pricing.mdx'
-import SubscriptionGuideMarkdown from './user-guide/subscription.mdx'
-import TaskGuideMarkdown from './user-guide/task.mdx'
-import TokenGuideMarkdown from './user-guide/token.mdx'
-import TopupGuideMarkdown from './user-guide/topup.mdx'
+import EnApiGuideMarkdown from './user-guide/en/api.mdx'
+import EnAuthGuideMarkdown from './user-guide/en/auth.mdx'
+import EnChatAppsGuideMarkdown from './user-guide/en/chat-apps.mdx'
+import EnLogGuideMarkdown from './user-guide/en/log.mdx'
+import EnPersonalSettingGuideMarkdown from './user-guide/en/personal-setting.mdx'
+import EnPricingGuideMarkdown from './user-guide/en/pricing.mdx'
+import EnSubscriptionGuideMarkdown from './user-guide/en/subscription.mdx'
+import EnTaskGuideMarkdown from './user-guide/en/task.mdx'
+import EnTokenGuideMarkdown from './user-guide/en/token.mdx'
+import EnTopupGuideMarkdown from './user-guide/en/topup.mdx'
+import JaApiGuideMarkdown from './user-guide/ja/api.mdx'
+import JaAuthGuideMarkdown from './user-guide/ja/auth.mdx'
+import JaChatAppsGuideMarkdown from './user-guide/ja/chat-apps.mdx'
+import JaLogGuideMarkdown from './user-guide/ja/log.mdx'
+import JaPersonalSettingGuideMarkdown from './user-guide/ja/personal-setting.mdx'
+import JaPricingGuideMarkdown from './user-guide/ja/pricing.mdx'
+import JaSubscriptionGuideMarkdown from './user-guide/ja/subscription.mdx'
+import JaTaskGuideMarkdown from './user-guide/ja/task.mdx'
+import JaTokenGuideMarkdown from './user-guide/ja/token.mdx'
+import JaTopupGuideMarkdown from './user-guide/ja/topup.mdx'
+import ZhApiGuideMarkdown from './user-guide/zh/api.mdx'
+import ZhAuthGuideMarkdown from './user-guide/zh/auth.mdx'
+import ZhChatAppsGuideMarkdown from './user-guide/zh/chat-apps.mdx'
+import ZhLogGuideMarkdown from './user-guide/zh/log.mdx'
+import ZhPersonalSettingGuideMarkdown from './user-guide/zh/personal-setting.mdx'
+import ZhPricingGuideMarkdown from './user-guide/zh/pricing.mdx'
+import ZhSubscriptionGuideMarkdown from './user-guide/zh/subscription.mdx'
+import ZhTaskGuideMarkdown from './user-guide/zh/task.mdx'
+import ZhTokenGuideMarkdown from './user-guide/zh/token.mdx'
+import ZhTopupGuideMarkdown from './user-guide/zh/topup.mdx'
+
+export const USER_GUIDE_LOCALES = [
+  { code: 'zh', label: '简体中文' },
+  { code: 'en', label: 'English' },
+  { code: 'ja', label: '日本語' },
+] as const
+
+export type UserGuideLocale = (typeof USER_GUIDE_LOCALES)[number]['code']
 
 export type UserGuideItem = {
   slug: string
@@ -34,8 +62,71 @@ export type UserGuideItem = {
   markdown: string
 }
 
+export type UserGuideCopy = {
+  section: string
+  title: string
+  language: string
+}
+
 const docsAssetBaseUrl =
   'https://raw.githubusercontent.com/QuantumNous/new-api-docs-v1/main/public/assets/'
+
+const guideMarkdownByLocale: Record<UserGuideLocale, Record<string, string>> = {
+  zh: {
+    auth: ZhAuthGuideMarkdown,
+    'personal-setting': ZhPersonalSettingGuideMarkdown,
+    token: ZhTokenGuideMarkdown,
+    api: ZhApiGuideMarkdown,
+    'chat-apps': ZhChatAppsGuideMarkdown,
+    pricing: ZhPricingGuideMarkdown,
+    log: ZhLogGuideMarkdown,
+    topup: ZhTopupGuideMarkdown,
+    subscription: ZhSubscriptionGuideMarkdown,
+    task: ZhTaskGuideMarkdown,
+  },
+  en: {
+    auth: EnAuthGuideMarkdown,
+    'personal-setting': EnPersonalSettingGuideMarkdown,
+    token: EnTokenGuideMarkdown,
+    api: EnApiGuideMarkdown,
+    'chat-apps': EnChatAppsGuideMarkdown,
+    pricing: EnPricingGuideMarkdown,
+    log: EnLogGuideMarkdown,
+    topup: EnTopupGuideMarkdown,
+    subscription: EnSubscriptionGuideMarkdown,
+    task: EnTaskGuideMarkdown,
+  },
+  ja: {
+    auth: JaAuthGuideMarkdown,
+    'personal-setting': JaPersonalSettingGuideMarkdown,
+    token: JaTokenGuideMarkdown,
+    api: JaApiGuideMarkdown,
+    'chat-apps': JaChatAppsGuideMarkdown,
+    pricing: JaPricingGuideMarkdown,
+    log: JaLogGuideMarkdown,
+    topup: JaTopupGuideMarkdown,
+    subscription: JaSubscriptionGuideMarkdown,
+    task: JaTaskGuideMarkdown,
+  },
+}
+
+export const USER_GUIDE_COPY: Record<UserGuideLocale, UserGuideCopy> = {
+  zh: {
+    section: '功能指南',
+    title: '用户指南',
+    language: '切换语言',
+  },
+  en: {
+    section: 'Feature Guide',
+    title: 'User Guide',
+    language: 'Language',
+  },
+  ja: {
+    section: '機能ガイド',
+    title: 'ユーザーガイド',
+    language: '言語',
+  },
+}
 
 function parseFrontmatter(markdown: string) {
   const cleanMarkdown = markdown.replace(/^\uFEFF/, '')
@@ -52,7 +143,7 @@ function parseFrontmatter(markdown: string) {
         const value = line.slice(separatorIndex + 1).trim()
         return [key, value]
       })
-      .filter(Boolean) as [string, string][],
+      .filter(Boolean) as [string, string][]
   )
 
   return {
@@ -78,62 +169,23 @@ function normalizeOfficialMarkdown(markdown: string) {
   }
 }
 
-function createUserGuideItem(
-  slug: string,
-  markdown: string,
-  fallback: Pick<UserGuideItem, 'title' | 'summary'>,
-): UserGuideItem {
-  const normalized = normalizeOfficialMarkdown(markdown)
-  return {
-    slug,
-    title: normalized.title || fallback.title,
-    summary: normalized.summary || fallback.summary,
-    markdown: normalized.markdown,
-  }
+export function normalizeUserGuideLocale(locale?: string): UserGuideLocale {
+  return USER_GUIDE_LOCALES.some((item) => item.code === locale)
+    ? (locale as UserGuideLocale)
+    : 'zh'
 }
 
-export const USER_GUIDE_ITEMS: UserGuideItem[] = [
-  createUserGuideItem('auth', AuthGuideMarkdown, {
-    title: '注册与登录',
-    summary: '支持账号密码注册,以及多种第三方 OAuth 一键登录',
-  }),
-  createUserGuideItem('personal-setting', PersonalSettingGuideMarkdown, {
-    title: '个人设置',
-    summary: '管理账号基本信息、安全设置和第三方账号绑定',
-  }),
-  createUserGuideItem('token', TokenGuideMarkdown, {
-    title: '令牌管理',
-    summary: '令牌是调用 API 的凭证，每个令牌可独立配置权限范围和配额上限',
-  }),
-  createUserGuideItem('api', ApiGuideMarkdown, {
-    title: '使用 API',
-    summary:
-      '将平台地址替换 OpenAI 的 base_url，使用平台颁发的令牌作为 api_key，即可开始调用',
-  }),
-  createUserGuideItem('chat-apps', ChatAppsGuideMarkdown, {
-    title: '聊天应用集成',
-    summary: '快速将 New API 配置导入到各类 AI 聊天应用中',
-  }),
-  createUserGuideItem('pricing', PricingGuideMarkdown, {
-    title: '定价',
-    summary: '查看全站模型定价及计费说明',
-  }),
-  createUserGuideItem('log', LogGuideMarkdown, {
-    title: '使用记录',
-    summary: '查看每次 API 调用的详细信息，支持按时间、模型、令牌等条件过滤',
-  }),
-  createUserGuideItem('topup', TopupGuideMarkdown, {
-    title: '配额与充值',
-    summary: '配额是平台内部计费单位，支持多种方式充值',
-  }),
-  createUserGuideItem('subscription', SubscriptionGuideMarkdown, {
-    title: '订阅计划',
-    summary: '按周期购买的套餐,适合有稳定用量需求的用户',
-  }),
-  createUserGuideItem('task', TaskGuideMarkdown, {
-    title: '任务管理',
-    summary: '管理 Midjourney 绘图、Suno 音乐生成等异步任务',
-  }),
-]
+export function getUserGuideItems(locale?: string): UserGuideItem[] {
+  const normalizedLocale = normalizeUserGuideLocale(locale)
 
-export const DEFAULT_USER_GUIDE_ITEM = USER_GUIDE_ITEMS[0]
+  return Object.entries(guideMarkdownByLocale[normalizedLocale]).map(
+    ([slug, markdown]) => ({
+      slug,
+      ...normalizeOfficialMarkdown(markdown),
+    })
+  )
+}
+
+export function getDefaultUserGuideItem(locale?: string): UserGuideItem {
+  return getUserGuideItems(locale)[0]
+}

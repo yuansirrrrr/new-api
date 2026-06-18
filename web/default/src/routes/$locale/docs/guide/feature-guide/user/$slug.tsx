@@ -16,41 +16,78 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
+import {
+  USER_GUIDE_COPY,
+  USER_GUIDE_LOCALES,
+  getDefaultUserGuideItem,
+  getUserGuideItems,
+  normalizeUserGuideLocale,
+} from '@/docs/user-guide'
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { DEFAULT_USER_GUIDE_ITEM, USER_GUIDE_ITEMS } from '@/docs/user-guide'
+import { Check, Languages } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
-export const Route = createFileRoute('/zh/docs/guide/feature-guide/user/$slug')(
-  {
-    component: UserGuidePage,
-  }
-)
+export const Route = createFileRoute(
+  '/$locale/docs/guide/feature-guide/user/$slug',
+)({
+  component: UserGuidePage,
+})
 
 function UserGuidePage() {
-  const { slug } = Route.useParams()
+  const { locale: localeParam, slug } = Route.useParams()
+  const locale = normalizeUserGuideLocale(localeParam)
+  const copy = USER_GUIDE_COPY[locale]
+  const guideItems = getUserGuideItems(locale)
   const currentItem =
-    USER_GUIDE_ITEMS.find((item) => item.slug === slug) ??
-    DEFAULT_USER_GUIDE_ITEM
+    guideItems.find((item) => item.slug === slug) ??
+    getDefaultUserGuideItem(locale)
 
   return (
     <main className='bg-background text-foreground min-h-screen'>
-      <div className='mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[300px_1fr] lg:px-10'>
-        <aside className='border-border bg-card/70 h-fit rounded-3xl border p-4 shadow-sm lg:sticky lg:top-8'>
+      <div className='border-border bg-card/80 sticky top-0 z-20 border-b backdrop-blur-xl'>
+        <div className='mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10'>
+          <Link
+            to='/$locale/docs/guide/feature-guide/user/$slug'
+            params={{ locale, slug: 'auth' }}
+            className='flex items-center gap-3 font-semibold'
+          >
+            <span className='bg-primary text-primary-foreground grid size-9 place-items-center rounded-xl text-sm'>
+              D
+            </span>
+            <span>Deeprouter Docs</span>
+          </Link>
+          <LanguageMenu
+            locale={locale}
+            slug={currentItem.slug}
+            label={copy.language}
+          />
+        </div>
+      </div>
+
+      <div className='mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-10'>
+        <aside className='border-border bg-card/70 h-fit rounded-3xl border p-4 shadow-sm lg:sticky lg:top-24'>
           <div className='px-3 py-2'>
-            <p className='text-muted-foreground text-sm'>功能指南</p>
-            <h1 className='mt-1 text-xl font-semibold'>用户指南</h1>
+            <p className='text-muted-foreground text-sm'>{copy.section}</p>
+            <h1 className='mt-1 text-xl font-semibold'>{copy.title}</h1>
           </div>
-          <nav className='mt-4 space-y-1.5'>
-            {USER_GUIDE_ITEMS.map((item) => {
+          <nav className='mt-4 space-y-1'>
+            {guideItems.map((item) => {
               const active = item.slug === currentItem.slug
               return (
                 <Link
                   key={item.slug}
-                  to='/zh/docs/guide/feature-guide/user/$slug'
-                  params={{ slug: item.slug }}
+                  to='/$locale/docs/guide/feature-guide/user/$slug'
+                  params={{ locale, slug: item.slug }}
                   className={[
-                    'block min-h-10 rounded-2xl px-3 py-2.5 text-sm leading-5 transition-colors',
+                    'block rounded-xl px-3 py-2.5 text-sm leading-5 transition-colors',
                     active
                       ? 'bg-primary/10 text-primary font-medium'
                       : 'text-muted-foreground hover:bg-muted hover:text-foreground',
@@ -64,8 +101,8 @@ function UserGuidePage() {
         </aside>
 
         <article className='min-w-0'>
-          <div className='border-border bg-card/70 rounded-3xl border p-8 shadow-sm md:p-10'>
-            <p className='text-primary text-sm font-medium'>用户指南</p>
+          <div className='border-border bg-card/70 rounded-3xl border p-6 shadow-sm sm:p-8 md:p-10'>
+            <p className='text-primary text-sm font-medium'>{copy.title}</p>
             <h2 className='mt-4 text-3xl font-bold tracking-tight md:text-4xl'>
               {currentItem.title}
             </h2>
@@ -89,6 +126,14 @@ function UserGuidePage() {
                     <p className='text-muted-foreground mt-3 leading-7'>
                       {children}
                     </p>
+                  ),
+                  a: ({ children, href }) => (
+                    <a
+                      href={href}
+                      className='text-primary underline underline-offset-4'
+                    >
+                      {children}
+                    </a>
                   ),
                   ul: ({ children }) => (
                     <ul className='text-muted-foreground mt-3 list-disc space-y-2 pl-6 leading-7'>
@@ -147,5 +192,45 @@ function UserGuidePage() {
         </article>
       </div>
     </main>
+  )
+}
+
+function LanguageMenu({
+  locale,
+  slug,
+  label,
+}: {
+  locale: string
+  slug: string
+  label: string
+}) {
+  return (
+    <DropdownMenu modal={false}>
+      <DropdownMenuTrigger
+        render={
+          <Button variant='outline' size='sm' className='rounded-full px-3' />
+        }
+      >
+        <Languages className='size-4' />
+        <span className='hidden sm:inline'>{label}</span>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align='end'>
+        {USER_GUIDE_LOCALES.map((item) => (
+          <DropdownMenuItem
+            key={item.code}
+            render={
+              <Link
+                to='/$locale/docs/guide/feature-guide/user/$slug'
+                params={{ locale: item.code, slug }}
+                className='flex w-full items-center'
+              />
+            }
+          >
+            {item.label}
+            {locale === item.code && <Check className='ms-auto size-4' />}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
