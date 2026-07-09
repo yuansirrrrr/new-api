@@ -86,8 +86,22 @@ func TestZLHubAdaptorMetadata(t *testing.T) {
 	if !slices.Contains(adaptor.GetModelList(), "doubao-seedance-2.0-fast") {
 		t.Fatalf("GetModelList() = %v, want doubao-seedance-2.0-fast", adaptor.GetModelList())
 	}
+	if !slices.Contains(adaptor.GetModelList(), "doubao-seedance-2.0-mini") {
+		t.Fatalf("GetModelList() = %v, want doubao-seedance-2.0-mini", adaptor.GetModelList())
+	}
 	if slices.Contains(adaptor.GetModelList(), "doubao-seedance-2-0-fast-260128") {
 		t.Fatalf("GetModelList() = %v, should not include official suffixed model", adaptor.GetModelList())
+	}
+}
+
+func TestSeedanceMiniVideoInputRatio(t *testing.T) {
+	got, ok := GetVideoInputRatio("doubao-seedance-2.0-mini")
+	if !ok {
+		t.Fatalf("GetVideoInputRatio() ok = false, want true")
+	}
+	want := 2.06 / 3.38
+	if got != want {
+		t.Fatalf("GetVideoInputRatio() = %v, want %v", got, want)
 	}
 }
 
