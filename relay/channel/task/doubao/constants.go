@@ -14,6 +14,7 @@ var ChannelName = "doubao-video"
 var ZLHubModelList = []string{
 	"doubao-seedance-2.0",
 	"doubao-seedance-2.0-fast",
+	"doubao-seedance-2.0-mini",
 }
 
 var ZLHubChannelName = "zlhub-video"
@@ -33,6 +34,7 @@ var videoInputRatioMap = map[string]float64{
 	"doubao-seedance-2-0-fast-260128": 22.0 / 37.0, // ~0.5946
 	"doubao-seedance-2.0":             28.0 / 46.0, // ~0.6087
 	"doubao-seedance-2.0-fast":        22.0 / 37.0, // ~0.5946
+	"doubao-seedance-2.0-mini":        2.06 / 3.38, // ~0.6095
 }
 
 func GetVideoInputRatio(modelName string) (float64, bool) {
