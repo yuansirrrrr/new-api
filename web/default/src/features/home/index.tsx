@@ -21,7 +21,14 @@ import { useAuthStore } from '@/stores/auth-store'
 import { Markdown } from '@/components/ui/markdown'
 import { PublicLayout } from '@/components/layout'
 import { Footer } from '@/components/layout/components/footer'
-import { FeaturedModels, Features, Hero, HowItWorks, Stats } from './components'
+import {
+  FeaturedModels,
+  Features,
+  Hero,
+  HowItWorks,
+  OperationsShowcase,
+  Stats,
+} from './components'
 import { useHomePageContent } from './hooks'
 
 export function Home() {
@@ -65,7 +72,8 @@ export function Home() {
       <Hero isAuthenticated={isAuthenticated} />
       <Stats />
       <FeaturedModels />
-      <Features />
+      <OperationsShowcase isAuthenticated={isAuthenticated} />
+      <Features isAuthenticated={isAuthenticated} />
       <HowItWorks />
       <Footer />
     </PublicLayout>

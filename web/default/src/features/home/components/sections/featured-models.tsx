@@ -17,7 +17,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { Link } from '@tanstack/react-router'
-import { ArrowRight, Code2, Layers3 } from 'lucide-react'
+import {
+  ArrowRight01Icon,
+  CodeSquareIcon,
+  Layers01Icon,
+} from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { useTranslation } from 'react-i18next'
 import { AnimateInView } from '@/components/animate-in-view'
 import { HeroTerminalDemo } from '../hero-terminal-demo'
@@ -61,29 +66,29 @@ export function FeaturedModels() {
   ]
 
   return (
-    <section className='border-border bg-background text-foreground dark:border-white/10 dark:bg-[#05060a] relative z-10 border-t px-6 py-20 md:py-28 dark:text-white'>
+    <section className='border-border bg-background text-foreground relative z-10 border-t px-5 py-20 md:py-28'>
       <div className='mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.85fr)] lg:items-start'>
         <AnimateInView>
           <div className='mb-8 flex items-end justify-between gap-4'>
             <div>
-              <p className='mb-3 text-xs font-medium tracking-widest text-blue-600 uppercase dark:text-blue-300'>
+              <p className='text-muted-foreground mb-3 text-xs font-medium uppercase'>
                 {t('Featured Models')}
               </p>
-              <h2 className='max-w-2xl text-3xl leading-tight font-semibold tracking-[-0.04em] md:text-5xl'>
+              <h2 className='max-w-2xl text-3xl leading-tight font-semibold md:text-5xl'>
                 {t('Find the right model, then route it through one key.')}
               </h2>
             </div>
             <Link
               to='/pricing'
-              className='text-muted-foreground hover:text-foreground hidden shrink-0 items-center gap-1.5 text-sm font-medium md:flex dark:text-slate-400 dark:hover:text-white'
+              className='text-muted-foreground hover:text-foreground hidden shrink-0 items-center gap-1.5 text-sm font-medium md:flex'
             >
               {t('View all models')}
-              <ArrowRight className='size-4' />
+              <HugeiconsIcon icon={ArrowRight01Icon} aria-hidden='true' />
             </Link>
           </div>
 
-          <div className='border-border bg-card/70 overflow-hidden rounded-3xl border shadow-xl shadow-blue-950/5 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-blue-950/20'>
-            <div className='text-muted-foreground grid grid-cols-[minmax(0,1.4fr)_0.7fr_0.5fr_0.5fr] gap-4 border-b border-border px-5 py-3 text-xs font-medium dark:border-white/10 dark:text-slate-500'>
+          <div className='border-border bg-card overflow-hidden rounded-lg border'>
+            <div className='text-muted-foreground grid grid-cols-[minmax(0,1.4fr)_0.7fr_0.5fr_0.5fr] gap-4 border-b px-5 py-3 text-xs font-medium md:grid-cols-[minmax(0,1.4fr)_0.7fr_0.5fr_0.5fr]'>
               <span>{t('Model')}</span>
               <span>{t('Context')}</span>
               <span>{t('Input')}</span>
@@ -93,26 +98,30 @@ export function FeaturedModels() {
               <Link
                 key={model.name}
                 to='/pricing'
-                className='hover:bg-muted/60 grid grid-cols-[minmax(0,1.4fr)_0.7fr_0.5fr_0.5fr] gap-4 border-b border-border px-5 py-4 text-sm transition-colors last:border-b-0 dark:border-white/10 dark:hover:bg-white/[0.06]'
+                className='hover:bg-muted/40 grid grid-cols-[minmax(0,1.4fr)_0.7fr_0.5fr_0.5fr] gap-4 border-b px-5 py-4 text-sm transition-colors last:border-b-0'
               >
                 <span className='min-w-0'>
                   <span className='flex items-center gap-2'>
-                    <Layers3 className='size-4 shrink-0 text-blue-500 dark:text-blue-300' />
+                    <HugeiconsIcon
+                      icon={Layers01Icon}
+                      className='text-muted-foreground shrink-0'
+                      aria-hidden='true'
+                    />
                     <span className='truncate font-medium'>{model.name}</span>
                   </span>
-                  <span className='text-muted-foreground mt-1 flex items-center gap-2 text-xs dark:text-slate-500'>
+                  <span className='text-muted-foreground mt-1 flex items-center gap-2 text-xs'>
                     {model.provider}
-                    <span className='size-1 rounded-full bg-muted-foreground/40' />
+                    <span className='bg-muted-foreground/40 size-1 rounded-full' />
                     {model.tag}
                   </span>
                 </span>
-                <span className='text-muted-foreground self-center font-mono text-xs dark:text-slate-400'>
+                <span className='text-muted-foreground self-center font-mono text-xs'>
                   {model.context}
                 </span>
-                <span className='text-muted-foreground self-center font-mono text-xs dark:text-slate-400'>
+                <span className='text-muted-foreground self-center font-mono text-xs'>
                   {model.input}
                 </span>
-                <span className='text-muted-foreground self-center font-mono text-xs dark:text-slate-400'>
+                <span className='text-muted-foreground self-center font-mono text-xs'>
                   {model.output}
                 </span>
               </Link>
@@ -122,7 +131,11 @@ export function FeaturedModels() {
 
         <AnimateInView delay={120} animation='scale-in'>
           <div className='mb-4 flex items-center gap-2 text-sm font-medium'>
-            <Code2 className='size-4 text-blue-500 dark:text-blue-300' />
+            <HugeiconsIcon
+              icon={CodeSquareIcon}
+              className='text-muted-foreground'
+              aria-hidden='true'
+            />
             {t('OpenAI-compatible requests')}
           </div>
           <HeroTerminalDemo />

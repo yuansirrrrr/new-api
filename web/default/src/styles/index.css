@@ -479,18 +479,18 @@ For commercial licensing, please contact support@quantumnous.com
 @media (prefers-reduced-motion: no-preference) {
   [data-slot='card'] {
     transition:
-      transform 150ms ease,
+      border-color 150ms ease,
+      background-color 150ms ease,
       box-shadow 150ms ease;
   }
 
   @media (min-width: 641px) {
     [data-slot='card']:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.06);
+      box-shadow: 0 1px 0 rgb(0 0 0 / 0.03);
     }
 
     .dark [data-slot='card']:hover {
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.3);
+      box-shadow: 0 1px 0 rgb(255 255 255 / 0.04);
     }
   }
 

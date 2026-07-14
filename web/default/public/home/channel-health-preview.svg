@@ -1,0 +1,27 @@
+<svg width="720" height="540" viewBox="0 0 720 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="540" rx="28" fill="#111111"/>
+  <rect x="28" y="28" width="664" height="484" rx="20" fill="#F7F7F4"/>
+  <text x="64" y="82" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="650">Channel health</text>
+  <text x="64" y="113" fill="#62625A" font-family="Inter, Arial, sans-serif" font-size="15">Realtime upstream status and failover hints.</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="15">
+    <rect x="64" y="154" width="592" height="72" rx="16" fill="#FFFFFF" stroke="#D8D8D2"/>
+    <circle cx="96" cy="190" r="9" fill="#111111"/>
+    <text x="122" y="196" fill="#111111" font-weight="650">OpenAI Primary</text>
+    <text x="322" y="196" fill="#62625A">99.99%</text>
+    <text x="548" y="196" fill="#62625A">121ms</text>
+    <rect x="64" y="246" width="592" height="72" rx="16" fill="#FFFFFF" stroke="#111111"/>
+    <circle cx="96" cy="282" r="9" fill="#111111"/>
+    <text x="122" y="288" fill="#111111" font-weight="650">Claude Fallback</text>
+    <text x="322" y="288" fill="#62625A">99.82%</text>
+    <text x="548" y="288" fill="#62625A">168ms</text>
+    <rect x="64" y="338" width="592" height="72" rx="16" fill="#FFFFFF" stroke="#D8D8D2"/>
+    <circle cx="96" cy="374" r="9" fill="#BEBEB7"/>
+    <text x="122" y="380" fill="#111111" font-weight="650">Gemini Budget</text>
+    <text x="322" y="380" fill="#62625A">98.41%</text>
+    <text x="548" y="380" fill="#62625A">204ms</text>
+  </g>
+  <rect x="64" y="438" width="246" height="42" rx="21" fill="#111111"/>
+  <text x="92" y="465" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="650">auto fallback ready</text>
+  <path d="M392 459H624" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
+  <path d="M392 459C432 426 465 486 504 454C538 426 572 472 624 436" stroke="#62625A" stroke-width="4" stroke-linecap="round"/>
+</svg>

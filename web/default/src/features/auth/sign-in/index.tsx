@@ -30,9 +30,9 @@ export function SignIn() {
 
   return (
     <AuthLayout>
-      <div className='w-full space-y-8'>
-        <div className='space-y-2'>
-          <h2 className='text-center text-2xl font-semibold tracking-tight sm:text-left'>
+      <div className='flex w-full flex-col gap-8'>
+        <div className='flex flex-col gap-2'>
+          <h2 className='text-center text-3xl font-medium tracking-tight sm:text-left'>
             {t('Sign in')}
           </h2>
           {!status?.self_use_mode_enabled &&

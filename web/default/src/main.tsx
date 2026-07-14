@@ -164,12 +164,17 @@ const rootElement = document.getElementById('root')!
 ;(function initSystemBranding() {
   try {
     if (typeof window === 'undefined' || typeof document === 'undefined') return
+    const normalizeTitle = (name: string) => {
+      const trimmed = name.trim()
+      return trimmed.toLowerCase() === 'deeprouter' ? 'deeprouter' : trimmed
+    }
     const apply = (name: string) => {
-      document.title = name
+      const title = normalizeTitle(name)
+      document.title = title
       const metaTitle = document.querySelector(
         'meta[name="title"]'
       ) as HTMLMetaElement | null
-      if (metaTitle) metaTitle.setAttribute('content', name)
+      if (metaTitle) metaTitle.setAttribute('content', title)
     }
     // Cache-first
     try {

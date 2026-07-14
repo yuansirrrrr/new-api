@@ -17,7 +17,14 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { Link } from '@tanstack/react-router'
-import { ArrowRight, BookOpen, Search, Sparkles } from 'lucide-react'
+import {
+  AiSearch02Icon,
+  ArrowRight01Icon,
+  BookOpen01Icon,
+  GitBranchIcon,
+  Shield01Icon,
+} from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { useTranslation } from 'react-i18next'
 import { resolveDocsUrl } from '@/lib/docs-url'
 import { useStatus } from '@/hooks/use-status'
@@ -33,39 +40,11 @@ export function Hero(props: HeroProps) {
   const { status } = useStatus()
   const docsUrl = resolveDocsUrl(status?.docs_link as string | undefined)
 
-  const modelCards = [
-    {
-      provider: 'OpenAI',
-      model: 'GPT-4o',
-      meta: t('Fast reasoning'),
-      price: '$2.50/M',
-    },
-    {
-      provider: 'Anthropic',
-      model: 'Claude 3.5 Sonnet',
-      meta: t('Long-form coding'),
-      price: '$3.00/M',
-    },
-    {
-      provider: 'Google',
-      model: 'Gemini 2.5 Pro',
-      meta: t('Multimodal analysis'),
-      price: '$1.25/M',
-    },
-    {
-      provider: 'ByteDance',
-      model: 'Seedance',
-      meta: t('Video generation'),
-      price: t('Async task'),
-    },
-  ]
-
   const renderDocsButton = () => {
-    const className =
-      'group inline-flex h-11 items-center gap-1.5 rounded-full border border-border bg-background/80 px-5 text-sm font-medium text-foreground hover:bg-muted dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:hover:text-white'
+    const className = 'h-10 rounded-full px-4 text-sm font-medium'
     const content = (
       <>
-        <BookOpen className='text-muted-foreground group-hover:text-foreground size-4 transition-colors duration-200 dark:text-slate-300 dark:group-hover:text-white' />
+        <HugeiconsIcon icon={BookOpen01Icon} data-icon='inline-start' />
         <span>{t('Docs')}</span>
       </>
     )
@@ -96,41 +75,27 @@ export function Hero(props: HeroProps) {
   }
 
   return (
-    <section className='bg-background text-foreground relative z-10 overflow-hidden px-6 pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 dark:bg-[#05060a] dark:text-white'>
-      <div
-        aria-hidden
-        className='pointer-events-none absolute inset-0 -z-10 opacity-80'
-        style={{
-          background: [
-            'radial-gradient(circle at 50% 8%, rgba(59,130,246,0.30) 0%, transparent 34%)',
-            'radial-gradient(circle at 20% 20%, rgba(168,85,247,0.20) 0%, transparent 28%)',
-            'radial-gradient(circle at 80% 24%, rgba(20,184,166,0.16) 0%, transparent 30%)',
-          ].join(', '),
-        }}
-      />
-      <div
-        aria-hidden
-        className='absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.12)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_70%_55%_at_50%_18%,black_25%,transparent_100%)] bg-[size:4rem_4rem] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)]'
-      />
-
+    <section className='bg-background text-foreground relative z-10 overflow-hidden px-4 pt-24 pb-12 sm:px-5 md:pt-40 md:pb-20'>
       <div className='mx-auto max-w-6xl'>
         <div className='mx-auto flex max-w-4xl flex-col items-center text-center'>
           <div
-            className='landing-animate-fade-up border-border bg-muted/50 mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-medium text-blue-700 opacity-0 shadow-xs backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-blue-100'
+            className='landing-animate-fade-up border-border bg-card/80 text-muted-foreground mb-6 flex flex-wrap items-center justify-center gap-2 rounded-full border px-4 py-2 text-xs font-medium opacity-0 shadow-[0_10px_40px_-34px_rgb(0_0_0_/_0.65)]'
             style={{ animationDelay: '0ms' }}
           >
-            <Sparkles className='size-3.5 text-blue-500 dark:text-blue-300' />
-            <span>{t('Deeprouter is a unified API for AI')}</span>
+            <span>{t('OpenAI compatible')}</span>
+            <span className='bg-muted-foreground/30 size-1 rounded-full' />
+            <span>{t('Reliable routing')}</span>
+            <span className='bg-muted-foreground/30 size-1 rounded-full' />
+            <span>{t('Quota controls')}</span>
           </div>
-
           <h1
-            className='landing-animate-fade-up max-w-4xl text-[clamp(3rem,8vw,6.8rem)] leading-[0.9] font-semibold tracking-[-0.075em] opacity-0'
+            className='landing-animate-fade-up max-w-4xl text-4xl leading-[1.04] font-semibold text-balance opacity-0 sm:text-6xl md:text-7xl'
             style={{ animationDelay: '60ms' }}
           >
             {t('One API for any model')}
           </h1>
           <p
-            className='landing-animate-fade-up text-muted-foreground mt-6 max-w-2xl text-base leading-relaxed opacity-0 md:text-xl dark:text-slate-300'
+            className='landing-animate-fade-up text-muted-foreground mt-5 max-w-2xl text-base leading-7 opacity-0 md:mt-6 md:text-lg md:leading-8'
             style={{ animationDelay: '120ms' }}
           >
             {t(
@@ -138,87 +103,164 @@ export function Hero(props: HeroProps) {
             )}
           </p>
 
-          <div
-            className='landing-animate-fade-up mt-8 flex flex-wrap items-center justify-center gap-3 opacity-0'
+          <Link
+            to='/pricing'
+            className='landing-animate-fade-up border-border bg-card text-card-foreground hover:bg-muted/30 mt-7 flex min-h-16 w-full max-w-3xl items-center gap-3 rounded-2xl border px-4 py-4 text-left opacity-0 shadow-[0_18px_60px_-42px_rgb(0_0_0_/_0.8)] transition-colors sm:min-h-24 sm:items-start sm:gap-4 sm:rounded-[1.5rem] sm:px-6 sm:py-5 md:mt-9'
             style={{ animationDelay: '180ms' }}
           >
-            {props.isAuthenticated ? (
-              <Button
-                className='bg-foreground text-background hover:bg-foreground/90 group h-11 rounded-full px-5 text-sm font-medium dark:bg-white dark:text-black dark:hover:bg-white/90'
-                render={<Link to='/dashboard' />}
-              >
-                {t('Go to Dashboard')}
-                <ArrowRight className='ml-1.5 size-4 transition-transform duration-200 group-hover:translate-x-0.5' />
-              </Button>
-            ) : (
-              <Button
-                className='bg-foreground text-background hover:bg-foreground/90 group h-11 rounded-full px-5 text-sm font-medium dark:bg-white dark:text-black dark:hover:bg-white/90'
-                render={<Link to='/sign-up' />}
-              >
-                {t('Start building')}
-                <ArrowRight className='ml-1.5 size-4 transition-transform duration-200 group-hover:translate-x-0.5' />
-              </Button>
-            )}
+            <HugeiconsIcon
+              icon={AiSearch02Icon}
+              className='text-muted-foreground mt-0.5 size-5 shrink-0'
+              aria-hidden='true'
+            />
+            <span className='text-muted-foreground flex-1 text-base sm:text-lg'>
+              {t('Search models, providers, modalities...')}
+            </span>
+            <span className='bg-muted text-muted-foreground flex size-10 shrink-0 items-center justify-center rounded-full'>
+              <HugeiconsIcon icon={ArrowRight01Icon} aria-hidden='true' />
+            </span>
+          </Link>
+
+          <div
+            className='landing-animate-fade-up mt-4 flex max-w-3xl flex-wrap items-center justify-center gap-2.5 opacity-0 sm:mt-5'
+            style={{ animationDelay: '240ms' }}
+          >
             <Button
               variant='outline'
-              className='border-border bg-background/80 text-foreground hover:bg-muted h-11 rounded-full px-5 text-sm font-medium dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:hover:text-white'
+              className='h-10 rounded-full px-4 text-sm font-medium'
               render={<Link to='/pricing' />}
             >
               {t('Browse models')}
             </Button>
             {renderDocsButton()}
+            {props.isAuthenticated ? (
+              <Button
+                className='h-10 rounded-full px-4 text-sm font-medium'
+                render={<Link to='/dashboard' />}
+              >
+                {t('Go to Dashboard')}
+                <HugeiconsIcon icon={ArrowRight01Icon} data-icon='inline-end' />
+              </Button>
+            ) : (
+              <Button
+                className='h-10 rounded-full px-4 text-sm font-medium'
+                render={<Link to='/sign-up' />}
+              >
+                {t('Start building')}
+                <HugeiconsIcon icon={ArrowRight01Icon} data-icon='inline-end' />
+              </Button>
+            )}
+            <Button
+              variant='outline'
+              className='h-10 rounded-full px-4 text-sm font-medium'
+              render={<Link to='/rankings' />}
+            >
+              {t('Rankings')}
+            </Button>
           </div>
         </div>
 
         <div
-          className='landing-animate-fade-up mx-auto mt-12 max-w-3xl opacity-0'
-          style={{ animationDelay: '260ms' }}
-        >
-          <Link
-            to='/pricing'
-            className='border-border bg-card/80 hover:bg-muted/70 flex h-14 items-center gap-3 rounded-2xl border px-4 text-left shadow-2xl shadow-blue-950/10 backdrop-blur-2xl transition-colors dark:border-white/10 dark:bg-white/[0.04] dark:shadow-blue-950/30 dark:hover:bg-white/[0.07]'
-          >
-            <Search className='text-muted-foreground size-5 dark:text-slate-400' />
-            <span className='text-muted-foreground flex-1 text-sm dark:text-slate-400'>
-              {t('Search models, providers, modalities...')}
-            </span>
-            <span className='border-border bg-muted text-muted-foreground rounded-lg border px-2 py-1 font-mono text-[10px] dark:border-white/10 dark:bg-white/10 dark:text-slate-400'>
-              /
-            </span>
-          </Link>
-        </div>
-
-        <div
-          className='landing-animate-fade-up mt-5 grid gap-3 opacity-0 sm:grid-cols-2 lg:grid-cols-4'
+          className='landing-animate-fade-up mt-14 grid gap-5 opacity-0 md:mt-20 lg:mt-24 lg:grid-cols-[minmax(0,1fr)_minmax(280px,320px)]'
           style={{ animationDelay: '320ms' }}
         >
-          {modelCards.map((item) => (
-            <Link
-              key={`${item.provider}-${item.model}`}
-              to='/pricing'
-              className='border-border bg-card/70 hover:bg-muted/70 group rounded-2xl border p-4 text-sm backdrop-blur-xl transition-colors dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.07]'
-            >
-              <div className='mb-4 flex items-center justify-between'>
-                <span className='text-muted-foreground dark:text-slate-400'>
-                  {item.provider}
-                </span>
-                <ArrowRight className='text-muted-foreground size-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 dark:text-slate-400' />
-              </div>
-              <div className='text-foreground font-medium dark:text-white'>
-                {item.model}
-              </div>
-              <div className='mt-2 flex items-center justify-between gap-3 text-xs'>
-                <span className='text-muted-foreground dark:text-slate-500'>
-                  {item.meta}
-                </span>
-                <span className='text-muted-foreground font-mono dark:text-slate-500'>
-                  {item.price}
-                </span>
-              </div>
-            </Link>
-          ))}
+          <HeroMediaPanel />
+          <HeroSidePanel isAuthenticated={props.isAuthenticated} />
         </div>
       </div>
     </section>
+  )
+}
+
+function HeroMediaPanel() {
+  const { t } = useTranslation()
+
+  return (
+    <Link
+      to='/pricing'
+      className='border-border bg-card text-card-foreground group hover:bg-muted/20 flex min-h-[300px] min-w-0 flex-col overflow-hidden rounded-lg border transition-colors sm:min-h-[360px] md:min-h-[440px]'
+    >
+      <div className='flex items-center justify-between border-b px-5 py-4'>
+        <span className='text-sm font-medium'>{t('Models & Routing')}</span>
+        <span className='text-muted-foreground font-mono text-xs'>/v1</span>
+      </div>
+      <div className='flex flex-1 p-3 sm:p-4'>
+        <img
+          src='/home/model-routing-preview.svg'
+          alt={t('Models & Routing')}
+          className='border-border bg-muted/20 h-full min-h-[220px] w-full min-w-0 rounded-lg border object-contain sm:min-h-[284px]'
+          decoding='async'
+          fetchPriority='high'
+          loading='eager'
+        />
+      </div>
+    </Link>
+  )
+}
+
+function HeroSidePanel(props: Pick<HeroProps, 'isAuthenticated'>) {
+  const { t } = useTranslation()
+  const protectedHref = (path: string) =>
+    props.isAuthenticated
+      ? path
+      : `/sign-in?redirect=${encodeURIComponent(path)}`
+  const previews = [
+    {
+      src: '/home/channel-health-preview.svg',
+      title: t('Channels'),
+      meta: '99.99%',
+      href: protectedHref('/channels'),
+      icon: GitBranchIcon,
+    },
+    {
+      src: '/home/usage-logs-preview.svg',
+      title: t('Usage Logs'),
+      meta: '$428',
+      href: protectedHref('/usage-logs'),
+      icon: Shield01Icon,
+    },
+  ]
+
+  return (
+    <div className='grid min-w-0 gap-5 md:grid-cols-2 lg:grid-cols-1'>
+      {previews.map((preview, index) => (
+        <a
+          key={preview.src}
+          href={preview.href}
+          className='border-border bg-card text-card-foreground group hover:bg-muted/20 flex min-h-[190px] min-w-0 flex-col overflow-hidden rounded-lg border transition-colors sm:min-h-[210px]'
+        >
+          <div className='flex items-center justify-between border-b px-4 py-3'>
+            <span className='flex items-center gap-2 text-sm font-medium'>
+              <HugeiconsIcon
+                icon={preview.icon}
+                className='text-muted-foreground'
+                aria-hidden='true'
+              />
+              {preview.title}
+            </span>
+            <span className='text-muted-foreground font-mono text-xs'>
+              {preview.meta}
+            </span>
+          </div>
+          <div className='flex min-h-0 flex-1 p-3'>
+            <img
+              src={preview.src}
+              alt={preview.title}
+              className='border-border bg-muted/20 aspect-[4/3] w-full min-w-0 rounded-lg border object-contain'
+              decoding='async'
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+          <div className='text-muted-foreground flex items-center gap-1 px-4 pb-3 text-xs'>
+            <span>{t('View details')}</span>
+            <HugeiconsIcon
+              icon={ArrowRight01Icon}
+              className='transition-transform group-hover:translate-x-0.5'
+              aria-hidden='true'
+            />
+          </div>
+        </a>
+      ))}
+    </div>
   )
 }
