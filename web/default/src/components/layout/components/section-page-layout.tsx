@@ -77,13 +77,13 @@ export function SectionPageLayout(props: SectionPageLayoutProps) {
   return (
     <PageFooterProvider container={footerContainer}>
       <Main>
-        <div className='shrink-0 px-3 pt-3 pb-2.5 sm:px-4 sm:pt-5 sm:pb-3'>
+        <div className='border-border/70 shrink-0 border-b px-3 pt-3 pb-2.5 sm:px-5 sm:pt-4 sm:pb-3'>
           {breadcrumb != null && (
             <div className='mb-2 sm:mb-3'>{breadcrumb}</div>
           )}
           <div className='flex flex-wrap items-center justify-between gap-x-3 gap-y-2 sm:gap-x-4'>
             <div className='min-w-0 flex-1'>
-              <h2 className='truncate text-base font-bold tracking-tight sm:text-lg'>
+              <h2 className='truncate text-base font-medium tracking-tight sm:text-lg'>
                 {title}
               </h2>
             </div>
@@ -95,13 +95,13 @@ export function SectionPageLayout(props: SectionPageLayoutProps) {
           </div>
         </div>
 
-        <div className='min-h-0 flex-1 overflow-auto px-3 pt-1 pb-3 sm:px-4 sm:pt-1.5 sm:pb-4'>
+        <div className='min-h-0 flex-1 overflow-auto px-3 pt-3 pb-3 sm:px-5 sm:pt-4 sm:pb-5'>
           {content}
         </div>
 
         <div
           ref={setFooterContainer}
-          className='bg-background shrink-0 border-t px-3 py-2.5 empty:hidden sm:px-4 sm:py-3'
+          className='bg-background border-border/70 shrink-0 border-t px-3 py-2.5 empty:hidden sm:px-5 sm:py-3'
         />
       </Main>
     </PageFooterProvider>

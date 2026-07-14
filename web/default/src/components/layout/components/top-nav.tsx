@@ -18,7 +18,8 @@ For commercial licensing, please contact support@quantumnous.com
 */
 import { useMemo } from 'react'
 import { Link } from '@tanstack/react-router'
-import { Menu } from 'lucide-react'
+import { Menu01Icon } from '@hugeicons/core-free-icons'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
@@ -58,7 +59,7 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
           <DropdownMenuTrigger
             render={<Button size='icon' variant='outline' className='size-7' />}
           >
-            <Menu />
+            <HugeiconsIcon icon={Menu01Icon} />
           </DropdownMenuTrigger>
           <DropdownMenuContent side='bottom' align='start'>
             {normalizedLinks.map(
@@ -95,7 +96,7 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
       {/* 桌面端水平导航 */}
       <nav
         className={cn(
-          'hidden items-center space-x-4 lg:flex lg:space-x-4 xl:space-x-6',
+          'hidden items-center gap-4 lg:flex xl:gap-6',
           className
         )}
         {...props}

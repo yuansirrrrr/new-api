@@ -225,7 +225,7 @@ export function DataTablePage<TData>(props: DataTablePageProps<TData>) {
 
   return (
     <>
-      <div className={cn('space-y-2.5 sm:space-y-3', props.className)}>
+      <div className={cn('flex flex-col gap-2.5 sm:gap-3', props.className)}>
         {toolbarNode}
         {mobileNode}
         {desktopNode}

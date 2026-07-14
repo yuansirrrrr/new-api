@@ -34,10 +34,10 @@ interface ApiDemoConfig {
 }
 
 const ACCENT_CLASSES: Record<AccentTone, string> = {
-  emerald: 'text-emerald-300 border-emerald-300',
-  amber: 'text-amber-300 border-amber-300',
-  blue: 'text-blue-300 border-blue-300',
-  violet: 'text-violet-300 border-violet-300',
+  emerald: 'text-foreground border-foreground',
+  amber: 'text-foreground border-foreground',
+  blue: 'text-foreground border-foreground',
+  violet: 'text-foreground border-foreground',
 }
 
 const API_DEMOS: ApiDemoConfig[] = [
@@ -148,8 +148,8 @@ export function HeroTerminalDemo(props: HeroTerminalDemoProps) {
 
   return (
     <div className={cn('mx-auto w-full max-w-2xl', props.className)}>
-      <div className='border-border bg-card/95 overflow-hidden rounded-2xl border shadow-[0_20px_60px_-25px_rgba(15,23,42,0.25)] backdrop-blur-sm dark:border-white/10 dark:bg-[#080b12]/95 dark:shadow-[0_20px_60px_-25px_rgba(0,0,0,0.7)]'>
-        <div className='border-border flex items-center gap-1 border-b px-3 dark:border-white/10'>
+      <div className='border-border bg-card overflow-hidden rounded-lg border'>
+        <div className='border-border flex items-center gap-1 border-b px-3'>
           {API_DEMOS.map((item, index) => {
             const isActive = index === activeIndex
             return (
@@ -160,7 +160,7 @@ export function HeroTerminalDemo(props: HeroTerminalDemoProps) {
                   'relative -mb-px border-b-2 px-3 py-3 text-xs font-medium transition-colors',
                   isActive
                     ? ACCENT_CLASSES[item.accent]
-                    : 'text-muted-foreground hover:text-foreground border-transparent dark:text-slate-500 dark:hover:text-slate-300'
+                    : 'text-muted-foreground hover:text-foreground border-transparent'
                 )}
               >
                 {item.label}
@@ -168,51 +168,45 @@ export function HeroTerminalDemo(props: HeroTerminalDemoProps) {
             )
           })}
           <div className='ml-auto flex items-center gap-2 pr-2'>
-            <span className='inline-block size-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.55)]' />
-            <span className='text-muted-foreground font-mono text-[10px] tracking-wider uppercase dark:text-slate-500'>
+            <span className='bg-success inline-block size-1.5 rounded-full' />
+            <span className='text-muted-foreground font-mono text-[10px] tracking-wider uppercase'>
               routed
             </span>
           </div>
         </div>
 
-        <div className='border-border flex items-center gap-2 border-b px-5 py-3 dark:border-white/10'>
-          <span className='rounded-md bg-blue-500/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-blue-600 dark:bg-white/10 dark:text-blue-200'>
+        <div className='border-border flex items-center gap-2 border-b px-5 py-3'>
+          <span className='bg-muted text-muted-foreground rounded-md px-1.5 py-0.5 font-mono text-[10px] font-semibold tracking-wider'>
             POST
           </span>
-          <code className='text-foreground truncate font-mono text-[12.5px] dark:text-slate-300'>
+          <code className='text-foreground truncate font-mono text-[12.5px]'>
             {demo.endpoint}
           </code>
         </div>
 
-        <div className='bg-border grid gap-px font-mono text-[12px] leading-relaxed dark:bg-white/10 md:grid-cols-2'>
+        <div className='bg-border grid gap-px font-mono text-[12px] leading-relaxed md:grid-cols-2'>
           <CodePanel label='Request' code={demo.request} />
           <CodePanel label='Response' code={demo.response} />
         </div>
 
-        <div className='border-border bg-muted/30 flex items-center justify-between border-t px-5 py-2.5 dark:border-white/10 dark:bg-white/[0.03]'>
-          <div className='text-muted-foreground flex items-center gap-3 text-[10px] tabular-nums dark:text-slate-500'>
+        <div className='border-border bg-muted/30 flex items-center justify-between border-t px-5 py-2.5'>
+          <div className='text-muted-foreground flex items-center gap-3 text-[10px] tabular-nums'>
             <span>
-              <span className='font-mono text-foreground dark:text-slate-300'>
-                {demo.latency}
-              </span>{' '}
+              <span className='text-foreground font-mono'>{demo.latency}</span>{' '}
               ms
             </span>
-            <span className='bg-muted-foreground/40 size-1 rounded-full dark:bg-slate-700' />
+            <span className='bg-muted-foreground/40 size-1 rounded-full' />
             <span>
-              <span className='font-mono text-foreground dark:text-slate-300'>
-                {demo.tokens}
-              </span>{' '}
+              <span className='text-foreground font-mono'>{demo.tokens}</span>{' '}
               tokens
             </span>
-            <span className='bg-muted-foreground/40 size-1 rounded-full dark:bg-slate-700' />
+            <span className='bg-muted-foreground/40 size-1 rounded-full' />
             <span>
               cost{' '}
-              <span className='font-mono text-foreground dark:text-slate-300'>
-                {demo.cost}
-              </span>
+              <span className='text-foreground font-mono'>{demo.cost}</span>
             </span>
           </div>
-          <span className='text-muted-foreground font-mono text-[10px] tracking-wider uppercase dark:text-slate-600'>
+          <span className='text-muted-foreground font-mono text-[10px] tracking-wider uppercase'>
             stream via sse
           </span>
         </div>
@@ -223,11 +217,11 @@ export function HeroTerminalDemo(props: HeroTerminalDemoProps) {
 
 function CodePanel(props: { label: string; code: string }) {
   return (
-    <div className='bg-card min-h-[320px] px-5 py-4 dark:bg-[#080b12]'>
-      <div className='text-muted-foreground mb-3 font-sans text-[10px] font-semibold tracking-[0.18em] uppercase dark:text-slate-600'>
+    <div className='bg-card min-h-[320px] px-5 py-4'>
+      <div className='text-muted-foreground mb-3 font-sans text-[10px] font-semibold uppercase'>
         {props.label}
       </div>
-      <pre className='text-foreground overflow-x-auto whitespace-pre-wrap break-words dark:text-slate-300'>
+      <pre className='text-foreground overflow-x-auto break-words whitespace-pre-wrap'>
         {props.code}
       </pre>
     </div>

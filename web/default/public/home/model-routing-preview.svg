@@ -1,0 +1,50 @@
+<svg width="1080" height="720" viewBox="0 0 1080 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="720" rx="28" fill="#F7F7F4"/>
+  <rect x="32" y="32" width="1016" height="656" rx="20" fill="#FFFFFF" stroke="#D8D8D2"/>
+  <rect x="64" y="64" width="952" height="64" rx="14" fill="#111111"/>
+  <circle cx="96" cy="96" r="8" fill="#F7F7F4"/>
+  <circle cx="124" cy="96" r="8" fill="#BEBEB7"/>
+  <circle cx="152" cy="96" r="8" fill="#6F6F67"/>
+  <text x="202" y="103" fill="#F7F7F4" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600">deeprouter model gateway</text>
+  <rect x="64" y="160" width="280" height="472" rx="18" fill="#F2F2EE" stroke="#D8D8D2"/>
+  <text x="92" y="205" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="650">Models</text>
+  <text x="92" y="236" fill="#62625A" font-family="Inter, Arial, sans-serif" font-size="15">Unified catalog and pricing</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="15">
+    <rect x="92" y="278" width="224" height="58" rx="14" fill="#FFFFFF" stroke="#D8D8D2"/>
+    <text x="116" y="313" fill="#111111" font-weight="600">gpt-4.1</text>
+    <text x="244" y="313" fill="#62625A">$2.00</text>
+    <rect x="92" y="350" width="224" height="58" rx="14" fill="#FFFFFF" stroke="#111111"/>
+    <text x="116" y="385" fill="#111111" font-weight="600">claude-sonnet</text>
+    <text x="244" y="385" fill="#62625A">$3.00</text>
+    <rect x="92" y="422" width="224" height="58" rx="14" fill="#FFFFFF" stroke="#D8D8D2"/>
+    <text x="116" y="457" fill="#111111" font-weight="600">gemini-pro</text>
+    <text x="244" y="457" fill="#62625A">$1.25</text>
+    <rect x="92" y="494" width="224" height="58" rx="14" fill="#FFFFFF" stroke="#D8D8D2"/>
+    <text x="116" y="529" fill="#111111" font-weight="600">deepseek-chat</text>
+    <text x="244" y="529" fill="#62625A">$0.28</text>
+  </g>
+  <rect x="376" y="160" width="640" height="472" rx="18" fill="#FFFFFF" stroke="#D8D8D2"/>
+  <text x="408" y="205" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="650">Routing policy</text>
+  <text x="408" y="236" fill="#62625A" font-family="Inter, Arial, sans-serif" font-size="15">Choose by latency, quota, group, and fallback rules.</text>
+  <rect x="408" y="278" width="188" height="82" rx="16" fill="#111111"/>
+  <text x="436" y="313" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">incoming request</text>
+  <text x="436" y="339" fill="#BEBEB7" font-family="Inter, Arial, sans-serif" font-size="14">/v1/chat/completions</text>
+  <path d="M596 319H664" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+  <path d="M654 307L666 319L654 331" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="672" y="250" width="280" height="58" rx="14" fill="#F2F2EE" stroke="#D8D8D2"/>
+  <text x="696" y="286" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">primary: openai-eu</text>
+  <circle cx="922" cy="279" r="7" fill="#111111"/>
+  <rect x="672" y="326" width="280" height="58" rx="14" fill="#FFFFFF" stroke="#111111"/>
+  <text x="696" y="362" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">fallback: claude-us</text>
+  <circle cx="922" cy="355" r="7" fill="#111111"/>
+  <rect x="672" y="402" width="280" height="58" rx="14" fill="#F2F2EE" stroke="#D8D8D2"/>
+  <text x="696" y="438" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600">budget: gemini-apac</text>
+  <circle cx="922" cy="431" r="7" fill="#BEBEB7"/>
+  <rect x="408" y="424" width="220" height="136" rx="18" fill="#F2F2EE" stroke="#D8D8D2"/>
+  <text x="436" y="461" fill="#62625A" font-family="Inter, Arial, sans-serif" font-size="14">median latency</text>
+  <text x="436" y="509" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="650">142ms</text>
+  <path d="M436 535C464 512 488 548 520 522C548 500 572 525 600 496" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
+  <rect x="656" y="496" width="296" height="64" rx="16" fill="#111111"/>
+  <text x="684" y="535" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600">route selected</text>
+  <text x="846" y="535" fill="#BEBEB7" font-family="Inter, Arial, sans-serif" font-size="15">98.7%</text>
+</svg>

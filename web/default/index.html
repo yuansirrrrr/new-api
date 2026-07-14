@@ -8,6 +8,26 @@
     <!-- Primary Meta Tags -->
     <title>New API</title>
     <meta name="title" content="New API" />
+    <script>
+      ;(function () {
+        try {
+          var title = 'deeprouter'
+          var saved = window.localStorage && window.localStorage.getItem('status')
+          if (saved) {
+            var status = JSON.parse(saved)
+            if (status && typeof status.system_name === 'string' && status.system_name.trim()) {
+              title = status.system_name.trim()
+            }
+          }
+          if (title.toLowerCase() === 'deeprouter') title = 'deeprouter'
+          document.title = title
+          var metaTitle = document.querySelector('meta[name="title"]')
+          if (metaTitle) metaTitle.setAttribute('content', title)
+        } catch (error) {
+          /* empty */
+        }
+      })()
+    </script>
     <meta
       name="description"
       content="Unified AI API gateway and admin dashboard."
